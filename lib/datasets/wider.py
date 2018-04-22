@@ -127,36 +127,37 @@ class wider(imdb):
 
     with open(filename, 'r') as f:
         img_name = f.readline().rstrip('\n')
-        num_objs = int(f.readline())
-        img_index = self._image_path.index(img_name)
+        while(img_name):
+            num_objs = int(f.readline())
+            img_index = self._image_path.index(img_name)
 
-        boxes = np.zeros((num_objs, 4), dtype=np.uint16)
-        gt_classes = np.zeros((num_objs), dtype=np.int32)
-        overlaps = np.zeros((num_objs, self.num_classes), dtype=np.float32)
-        # "Seg" area for WIDER is just the box area
-        seg_areas = np.zeros((num_objs), dtype=np.float32)
+            boxes = np.zeros((num_objs, 4), dtype=np.uint16)
+            gt_classes = np.zeros((num_objs), dtype=np.int32)
+            overlaps = np.zeros((num_objs, self.num_classes), dtype=np.float32)
+            # "Seg" area for WIDER is just the box area
+            seg_areas = np.zeros((num_objs), dtype=np.float32)
 
-        # Load object bounding boxes into a data frame.
-        for ix in range(num_objs):
-          bbox = f.readline().split()
-          # Make pixel indexes 0-based
-          x1 = float(bbox[0])
-          y1 = float(bbox[1])
-          x2 = x1 + (float(bbox[2]) or 1) - 1
-          y2 = y1 + (float(bbox[3]) or 1) - 1
-          cls = self._class_to_ind['face']
-          boxes[ix, :] = [x1, y1, x2, y2]
-          gt_classes[ix] = cls
-          overlaps[ix, cls] = 1.0
-          seg_areas[ix] = (x2 - x1 + 1) * (y2 - y1 + 1)
+            # Load object bounding boxes into a data frame.
+            for ix in range(num_objs):
+              bbox = f.readline().split()
+              # Make pixel indexes 0-based
+              x1 = float(bbox[0])
+              y1 = float(bbox[1])
+              x2 = x1 + (float(bbox[2]) or 1) - 1
+              y2 = y1 + (float(bbox[3]) or 1) - 1
+              cls = self._class_to_ind['face']
+              boxes[ix, :] = [x1, y1, x2, y2]
+              gt_classes[ix] = cls
+              overlaps[ix, cls] = 1.0
+              seg_areas[ix] = (x2 - x1 + 1) * (y2 - y1 + 1)
 
-        overlaps = scipy.sparse.csr_matrix(overlaps)
+            overlaps = scipy.sparse.csr_matrix(overlaps)
 
-        annot[img_index] = {'boxes': boxes,
-                            'gt_classes': gt_classes,
-                            'gt_overlaps': overlaps,
-                            'flipped': False,
-                            'seg_areas': seg_areas}
+            annot[img_index] = {'boxes': boxes,
+                                'gt_classes': gt_classes,
+                                'gt_overlaps': overlaps,
+                                'flipped': False,
+                                'seg_areas': seg_areas}
 
     return annot
 
