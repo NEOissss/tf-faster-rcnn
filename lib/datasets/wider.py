@@ -131,9 +131,8 @@ class wider(imdb):
             img_name = f.readline().rstrip('\n')
             if not img_name:
                 break
-            num_objs = int(f.readline())
+            num_objs = int(f.readline().rstrip('\n'))
             img_index = self._image_path.index(img_name)
-            print(img_index)
 
             boxes = np.zeros((num_objs, 4), dtype=np.uint16)
             gt_classes = np.zeros((num_objs), dtype=np.int32)
