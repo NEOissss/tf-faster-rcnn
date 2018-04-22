@@ -126,8 +126,11 @@ class wider(imdb):
     filename = os.path.join(self._default_path, 'wider_face_split', 'wider_face_' + self._image_set + '_bbx_gt.txt')
 
     with open(filename, 'r') as f:
-        img_name = f.readline().rstrip('\n')
-        while(img_name):
+
+        while(True):
+            img_name = f.readline().rstrip('\n')
+            if not img_name:
+                break
             num_objs = int(f.readline())
             img_index = self._image_path.index(img_name)
 
@@ -158,8 +161,7 @@ class wider(imdb):
                                 'gt_overlaps': overlaps,
                                 'flipped': False,
                                 'seg_areas': seg_areas}
-            img_name = f.readline().rstrip('\n')
-            
+
     return annot
 
   def _get_comp_id(self):
