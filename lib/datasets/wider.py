@@ -63,9 +63,9 @@ class wider(imdb):
     """
     """
     path = []
-    for root, dirs, files in os.walk(self._data_path):
-        for name in files:
-            path.append(name)
+    for dir_name in os.listdir(self._data_path):
+        for _, _, name in os.walk(os.path.join(self._data_path, dir_name)):
+            path.append(os.path.join(dir_name, name))
     return path
 
   def _get_default_path(self):
