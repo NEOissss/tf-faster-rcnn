@@ -49,9 +49,10 @@ class wider(imdb):
     """
     Return the absolute path to image i in the image sequence.
     """
-    assert os.path.exists(self._image_path[i]), \
-      'Path does not exist: {}'.format(self._image_path[i])
-    return self._image_path[i]
+    image_path = os.path.join(self._data_path, self._image_path[i])
+    assert os.path.exists(image_path), \
+      'Path does not exist: {}'.format(image_path)
+    return image_path
 
   def _load_image_set_index(self):
     """
@@ -64,7 +65,7 @@ class wider(imdb):
     path = []
     for root, dirs, files in os.walk(self._data_path):
         for name in files:
-            path.append(os.path.join(root, name))
+            path.append(name)
     return path
 
   def _get_default_path(self):
