@@ -121,7 +121,7 @@ class wider(imdb):
     Load image and bounding boxes info from TXT file.
     """
     annot = [{} for i in range(self.num_images)]
-    filename = os.path.join(self._data_path, 'wider_face_split', 'wider_face_' + self._image_set + '_bbx_gt.txt')
+    filename = os.path.join(self._default_path, 'wider_face_split', 'wider_face_' + self._image_set + '_bbx_gt.txt')
 
     with open(filename, 'r') as f:
         img_name = f.readline()
