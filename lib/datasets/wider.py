@@ -158,7 +158,8 @@ class wider(imdb):
                                 'gt_overlaps': overlaps,
                                 'flipped': False,
                                 'seg_areas': seg_areas}
-
+            img_name = f.readline().rstrip('\n')
+            
     return annot
 
   def _get_comp_id(self):
