@@ -9,8 +9,8 @@ from __future__ import division
 from __future__ import print_function
 
 import os
-from imdb import imdb
-import ds_utils as ds_utils
+from datasets.imdb import imdb
+import datasets.ds_utils as ds_utils
 import xml.etree.ElementTree as ET
 import numpy as np
 import scipy.sparse
@@ -274,7 +274,7 @@ class wider(imdb):
 
 
 if __name__ == '__main__':
-  from datasets.pascal_voc import pascal_voc
+  from datasets.wider import wider
 
   d = wider('train')
   res = d.roidb
