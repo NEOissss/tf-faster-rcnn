@@ -42,7 +42,7 @@ for year in ['2015']:
 # Set up wider dataset
 for split in ['train', 'val', 'test']:
     name = 'WIDER_{}'.format(split)
-    __sets[name] = wider(lambda split=split: wider(split))
+    __sets[name] = (lambda split=split: wider(split))
 
 def get_imdb(name):
   """Get an imdb (image database) by name."""
