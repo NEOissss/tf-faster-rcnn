@@ -124,7 +124,7 @@ class wider(imdb):
     filename = os.path.join(self._default_path, 'wider_face_split', 'wider_face_' + self._image_set + '_bbx_gt.txt')
 
     with open(filename, 'r') as f:
-        img_name = f.readline()
+        img_name = f.readline().rstrip('\n')
         num_objs = int(f.readline())
         img_index = self._image_path.index(img_name)
 
