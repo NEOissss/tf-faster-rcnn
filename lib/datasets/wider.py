@@ -143,7 +143,7 @@ class wider(imdb):
           x1 = float(bbox[0])
           y1 = float(bbox[1])
           x2 = x1 + (float(bbox[2]) or 1) - 1
-          y2 = y2 + (float(bbox[3]) or 1) - 1
+          y2 = y1 + (float(bbox[3]) or 1) - 1
           cls = self._class_to_ind['face']
           boxes[ix, :] = [x1, y1, x2, y2]
           gt_classes[ix] = cls
