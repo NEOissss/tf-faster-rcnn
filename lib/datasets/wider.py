@@ -189,7 +189,7 @@ class wider(imdb):
             continue
           # the VOCdevkit expects 1-based indices
           for k in range(dets.shape[0]):
-            f.write('{:s} {:.3f} {:.1f} {:.1f} {:.1f} {:.1f}\n'.
+            f.write('{:d} {:.3f} {:.1f} {:.1f} {:.1f} {:.1f}\n'.
                     format(index, dets[k, -1],
                            dets[k, 0] + 1, dets[k, 1] + 1,
                            dets[k, 2] + 1, dets[k, 3] + 1))
