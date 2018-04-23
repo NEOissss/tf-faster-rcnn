@@ -43,8 +43,8 @@ case ${DATASET} in
     TRAIN_IMDB="WIDER_train"
     TEST_IMDB="WIDER_val"
     STEPSIZE="[50000]"
-    ITERS=20000
-    ANCHORS="[4,8,16]"
+    ITERS=5000
+    ANCHORS="[8,16,32]"
     RATIOS="[0.5,1,2]"
     ;;
   *)
