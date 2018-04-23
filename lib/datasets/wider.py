@@ -173,11 +173,7 @@ class wider(imdb):
     # VOCdevkit/results/VOC2007/Main/<comp_id>_det_test_aeroplane.txt
     filename = self._get_comp_id() + '_det_' + self._image_set + '_{:s}.txt'
     path = os.path.join(
-      self._default_path,
-      'results',
-      'VOC' + self._year,
-      'Main',
-      filename)
+      self._default_path, 'results', filename)
     return path
 
   def _write_voc_results_file(self, all_boxes):
