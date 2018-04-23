@@ -49,7 +49,6 @@ class wider(imdb):
     """
     Return the absolute path to image i in the image sequence.
     """
-    print(self.num_images, i)
     image_path = os.path.join(self._data_path, self._image_path[i])
     assert os.path.exists(image_path), \
       'Path does not exist: {}'.format(image_path)

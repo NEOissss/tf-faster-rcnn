@@ -41,7 +41,7 @@ case ${DATASET} in
     ;;
   wider)
     TRAIN_IMDB="WIDER_train"
-    TEST_IMDB="WIDER_test"
+    TEST_IMDB="WIDER_val"
     STEPSIZE="[50000]"
     ITERS=20000
     ANCHORS="[4,8,16]"
